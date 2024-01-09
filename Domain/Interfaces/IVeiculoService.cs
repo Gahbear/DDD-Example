@@ -13,7 +13,7 @@ namespace Domain.Interfaces
         //metodos,
         //não é feita a implementação de nada
 
-        Task PostAsync(VeiculoCommand command);
+        Task<string> PostAsync(VeiculoCommand command);
         void PostAsync();
         void GetAsync();
     }
