@@ -1,32 +1,29 @@
 ﻿using Dapper;
+using Domain.Commands;
 using Domain.Entidades;
 using Domain.Interfaces;
-using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Infrastructure.Repository
 {
     public class VeiculoRepository : IVeiculoRepository
     {
-        private string stringconnection = "";
-        public async Task<string> PostAsync(Veiculo command)
+        string conexao = @"Server=(localdb)\mssqllocaldb;Database=AluguelVeiculos;Trusted_Connection=True;MultipleActiveResultSets=true";
+        public async Task<string> PostAsync(VeiculoCommand command)
         {
             string queryInsert = @"
 INSERT INTO Veiculo(Placa, AnoFabricacao, TipoVeiculoId, Estado, MontadoraId)
 VALUES(@Placa, @AnoFabricacao, @TipoVeiculoId, @Estado, @MontadoraId)";
 
-            using(var conn = new SqlConnection())
+            using (var conn = new SqlConnection())
             {
-                conn.Execute(queryInsert, new {
-                      Placa = command.Placa,
-                      AnoFabricacao = command.AnoFabricacao,
-                      TipoVeiculoId = command.TipoVeiculo,
-                      Estado = command.Estado,
-                      MontadoraId = command.Montadora
+                conn.Execute(queryInsert, new
+                {
+                    Placa = command.Placa,
+                    AnoFabricacao = command.AnoFabricacao,
+                    TipoVeiculoId = command.TipoVeiculo,
+                    Estado = command.Estado,
+                    MontadoraId = command.Montadora
                 });
 
                 return "Veiculo Cadastrado com sucesso";
@@ -37,7 +34,7 @@ VALUES(@Placa, @AnoFabricacao, @TipoVeiculoId, @Estado, @MontadoraId)";
         {
 
         }
-        public void GetAsync() 
+        public void GetAsync()
         {
 
         }

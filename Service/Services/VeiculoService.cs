@@ -1,16 +1,19 @@
 ﻿using Domain.Commands;
 using Domain.Enum;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Services
 {
     public class VeiculoService : IVeiculoService
     {
+        //Injeção de dependência
+
+        private readonly IVeiculoRepository _repository;
+
+        public VeiculoService(IVeiculoRepository repository)
+        {
+            _repository = repository;
+        }
         public void GetAsync()
         {
             throw new NotImplementedException();
@@ -34,7 +37,7 @@ namespace Service.Services
                 )
                 return "O tipo de Veículo é menor que o permitido";
 
-            return _veiculoRepository.PostAsync(command);
+            return await _repository.PostAsync(command);
         }
         public void PostAsync()
         {
