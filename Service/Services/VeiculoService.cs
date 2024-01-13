@@ -19,7 +19,7 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public async Task<string> PostAsync(VeiculoCommand command)
+       public async Task<string> PostAsync(VeiculoCommand command)
         {
 
             int AnoAtual = DateTime.Now.Year;
@@ -40,6 +40,10 @@ namespace Service.Services
             return await _repository.PostAsync(command);
         }
         public void PostAsync()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<IEnumerable<VeiculoCommand>> GetVeiculosAlugadosAsync()
         {
             throw new NotImplementedException();
         }

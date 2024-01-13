@@ -26,11 +26,11 @@ namespace Application.Controllers
         { 
             return Ok();
         }
-        [HttpPost]
-        [Route("Alugar")]
-        public IActionResult PostAsync()
+        [HttpGet]
+        [Route("VeiculosAlugados")]
+        public async Task<IActionResult> GetVeiculosAlugadosAsync()
         {
-            return Ok();
+            return Ok(await _veiculoService.GetVeiculosAlugadosAsync());
         }
 
     }

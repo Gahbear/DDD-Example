@@ -38,5 +38,16 @@ VALUES(@Placa, @AnoFabricacao, @TipoVeiculoId, @Estado, @MontadoraId)";
         {
 
         }
+
+        public async Task<IEnumerable<VeiculoCommand>> GetVeiculosAlugadosAsync()
+        {
+            string queryBuscarGetVeiculosAlugadosAsync = @"
+             SELECT * FROM Veiculo WHERE ALUGADO = 0";
+            using(SqlConnection conn = new SqlConnection(conexao)) 
+            {
+                return conn.QueryAsync<VeiculoCommand>(
+                    queryBuscarGetVeiculosAlugadosAsync).Result.ToList();
+            }
+        }
     }
 }
