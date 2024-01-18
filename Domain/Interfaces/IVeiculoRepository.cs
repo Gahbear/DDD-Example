@@ -1,10 +1,5 @@
 ﻿using Domain.Commands;
-using Domain.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Enum;
 
 namespace Domain.Interfaces
 {
@@ -14,5 +9,6 @@ namespace Domain.Interfaces
         void PostAsync();
         void GetAsync();
         Task<IEnumerable<VeiculoCommand>> GetVeiculosAlugadosAsync();
+        Task<VeiculoPrecoCommand> GetPrecoDiaria(ETipoVeiculo tipoVeiculo);
     }
 }

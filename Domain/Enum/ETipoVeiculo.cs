@@ -8,11 +8,11 @@ namespace Domain.Enum
 {
     public enum ETipoVeiculo
     {
-        SUVs = 1,
-        Picapes = 2,
-        Elétricos = 3,
-        Clássicos = 4,
-        Hatchs = 5,
+        SUV = 1,
+        Picape = 2,
+        Elétrico = 3,
+        Clássico = 4,
+        Hatch = 5,
 
     }
 }

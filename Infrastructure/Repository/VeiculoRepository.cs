@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Domain.Commands;
 using Domain.Entidades;
+using Domain.Enum;
 using Domain.Interfaces;
 using System.Data.SqlClient;
 
@@ -48,6 +49,17 @@ VALUES(@Placa, @AnoFabricacao, @TipoVeiculoId, @Estado, @MontadoraId)";
                 return conn.QueryAsync<VeiculoCommand>(
                     queryBuscarGetVeiculosAlugadosAsync).Result.ToList();
             }
+        }
+        public async Task<VeiculoPrecoCommand> GetPrecoDiaria(ETipoVeiculo tipoVeiculo)
+        {
+            string queryGetPrecoDiaria = @"SELECT * FROM Veiculopreco WHERE TipoVeiculo = @TIPOVEICULO";
+            using (SqlConnection conn = new SqlConnection(conexao)) 
+            {
+                return conn.Query<VeiculoPrecoCommand>(queryGetPrecoDiaria, new{
+                    TipoVeiculo = tipoVeiculo
+                }).FirstOrDefault();
+            }
+
         }
     }
 }
